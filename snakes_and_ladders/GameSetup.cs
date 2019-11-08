@@ -16,7 +16,11 @@ namespace snakes_and_ladders {
                 console.Print("Who is playing? (comma separated names) [for example \"Emese,Hashim\"]");
                 consoleInput = console.Read();
             }
-            List<IPlayer> players = consoleInput.Split(",").Select(name => new Player(name.Trim())).ToList<IPlayer>();
+            SnakesAndLaddersBoard board = new SnakesAndLaddersBoard();
+            List<IPlayer> players = consoleInput
+                .Split(",")
+                .Select(name => new Player(name.Trim(), board))
+                .ToList<IPlayer>();
             return new Game(console, players);
         }
     }

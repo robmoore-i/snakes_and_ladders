@@ -14,13 +14,12 @@ namespace snakes_and_ladders {
             numberOfPlayers = this.players.Count;
         }
 
-        public List<string> PlayerNames() {
+        public IEnumerable<string> PlayerNames() {
             return players.Select(player => player.Name()).ToList();
         }
 
         public void Start() {
-            SnakesAndLaddersBoard board = new SnakesAndLaddersBoard();
-            players[0].TakeTurn(console, board);
+            players[0].TakeTurn(console);
         }
     }
 }

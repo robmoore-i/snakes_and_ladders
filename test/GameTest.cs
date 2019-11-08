@@ -6,7 +6,7 @@ namespace test {
     public class GameTest {
         [Test]
         public void ItGetsTheNumberOfPlayers() {
-            List<IPlayer> players = new List<IPlayer>(new[] {new Player("Manoj"), new Player("Ryan")});
+            List<IPlayer> players = new List<IPlayer>(new[] {NamedPlayer("Manoj"), NamedPlayer("Ryan")});
             
             Game game = new Game(MockConsole.Empty(), players);
             
@@ -15,7 +15,7 @@ namespace test {
 
         [Test]
         public void ItGetsThePlayerNames() {
-            List<IPlayer> players = new List<IPlayer>(new[] {new Player("Manoj"), new Player("Ryan")});
+            List<IPlayer> players = new List<IPlayer>(new[] {NamedPlayer("Manoj"), NamedPlayer("Ryan")});
             
             Game game = new Game(MockConsole.Empty(), players);
             
@@ -25,12 +25,16 @@ namespace test {
         [Test]
         public void TheFirstPlayerTakesTheirTurn() {
             MockPlayer mockPlayer = new MockPlayer();
-            List<IPlayer> players = new List<IPlayer>(new IPlayer[] {mockPlayer, new Player("Ryan")});
+            List<IPlayer> players = new List<IPlayer>(new IPlayer[] {mockPlayer, NamedPlayer("Ryan")});
             Game game = new Game(MockConsole.Empty(), players);
             
             game.Start();
             
             mockPlayer.AssertTurnTaken();
+        }
+
+        private static Player NamedPlayer(string name) {
+            return new Player(name, new MockBoard());
         }
     }
 }

@@ -9,7 +9,7 @@ namespace test {
             return "Mo the Mock";
         }
 
-        public void TakeTurn(IConsole console, IBoard board) {
+        public void TakeTurn(IConsole console) {
             turnWasTaken = true;
         }
 
