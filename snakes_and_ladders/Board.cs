@@ -4,10 +4,12 @@ using System.Linq;
 namespace snakes_and_ladders {
     public class Board : IBoard {
         private readonly IConsole console;
+        private readonly int endSquare;
         private readonly List<ITunnel> tunnels;
 
-        public Board(IConsole console, params ITunnel[] tunnels) {
+        public Board(IConsole console, int endSquare, params ITunnel[] tunnels) {
             this.console = console;
+            this.endSquare = endSquare;
             this.tunnels = new List<ITunnel>(tunnels);
         }
 
@@ -23,7 +25,7 @@ namespace snakes_and_ladders {
         }
 
         public bool HasWon(int square) {
-            return false;
+            return square >= endSquare;
         }
     }
 }

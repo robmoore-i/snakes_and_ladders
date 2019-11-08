@@ -4,9 +4,13 @@ using System.Linq;
 namespace snakes_and_ladders {
     public class GameSetup {
         private readonly IConsole console;
+        private Board board;
+        private Dice dice;
 
-        public GameSetup(IConsole console) {
+        public GameSetup(IConsole console, Board board, Dice dice) {
             this.console = console;
+            this.board = board;
+            this.dice = dice;
         }
 
         public Game CreateGame() {
@@ -16,8 +20,6 @@ namespace snakes_and_ladders {
                 console.Print("Who is playing? (comma separated names) [for example \"Emese,Hashim\"]");
                 consoleInput = console.Read();
             }
-            Board board = new Board(console);
-            Dice dice = new Dice();
             List<IPlayer> players = consoleInput
                 .Split(",")
                 .Select(name => new Player(name.Trim(), board, dice))
