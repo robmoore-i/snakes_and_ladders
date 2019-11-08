@@ -4,8 +4,8 @@ using System.Linq;
 namespace snakes_and_ladders {
     public class GameSetup {
         private readonly IConsole console;
-        private Board board;
-        private Dice dice;
+        private readonly Board board;
+        private readonly Dice dice;
 
         public GameSetup(IConsole console, Board board, Dice dice) {
             this.console = console;
