@@ -82,8 +82,8 @@ namespace test {
         }
 
         public string Read() {
-            string read = this.reads[this.readsMade];
-            this.readsMade += 1;
+            string read = reads[readsMade];
+            readsMade += 1;
             return read;
         }
     }

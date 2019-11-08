@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace test {
@@ -12,8 +11,7 @@ namespace test {
         public Game(IConsole console) {
             this.console = console;
             this.console.Print("Who is playing? (comma separated names)");
-            string consoleInput;
-            consoleInput = this.console.Read();
+            string consoleInput = this.console.Read();
             while (consoleInput == "" || !consoleInput.Contains(",")) {
                 this.console.Print("Who is playing? (comma separated names) [for example \"Emese,Hashim\"]");
                 consoleInput = this.console.Read();
@@ -25,12 +23,12 @@ namespace test {
         public Game(IConsole console, List<string> playerNames) {
             this.console = console;
             this.playerNames = playerNames;
-            this.numberOfPlayers = playerNames.Count();
+            numberOfPlayers = playerNames.Count();
         }
 
         public void Start() {
             string firstPlayer = playerNames[0];
-            this.console.Print(firstPlayer + ", press enter to roll the dice.");
+            console.Print(firstPlayer + ", press enter to roll the dice.");
         }
     }
 }
