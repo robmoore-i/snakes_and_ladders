@@ -33,6 +33,17 @@ namespace test {
             mockPlayer.AssertTurnTaken();
         }
 
+        [Test]
+        public void IfPlayerHasWonThenTheWinnerIsPrinted() {
+            List<IPlayer> players = new List<IPlayer>(new IPlayer[] {new MockPlayer(true), NamedPlayer("Ryan")});
+            MockConsole mockConsole = MockConsole.Empty();
+            Game game = new Game(mockConsole, players);
+
+            game.Start();
+
+            mockConsole.AssertTextWasPrinted("We have a winner! Congratulations, Mo the Mock!");
+        }
+
         private static Player NamedPlayer(string name) {
             return new Player(name, new MockBoard(), new MockDice());
         }
