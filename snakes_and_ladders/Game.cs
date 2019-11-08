@@ -19,8 +19,7 @@ namespace snakes_and_ladders {
         }
 
         public void Start() {
-            string firstPlayerName = players[0].Name();
-            console.Print(firstPlayerName + ", press enter to roll the dice.");
+            players[0].TakeTurn(console);
         }
     }
 }

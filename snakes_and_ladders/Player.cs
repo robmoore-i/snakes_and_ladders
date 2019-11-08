@@ -9,5 +9,9 @@ namespace snakes_and_ladders {
         public string Name() {
             return name;
         }
+
+        public void TakeTurn(IConsole console) {
+            console.Print(name + ", press enter to roll the dice.");
+        }
     }
 }

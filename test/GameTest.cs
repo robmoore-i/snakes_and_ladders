@@ -7,35 +7,28 @@ namespace test {
         [Test]
         public void ItGetsTheNumberOfPlayers() {
             List<IPlayer> players = new List<IPlayer>(new[] {new Player("Manoj"), new Player("Ryan")});
-            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { }));
-            Game game = new Game(mockPrinter, players);
+            Game game = new Game(EmptyMockConsole(), players);
             Assert.AreEqual(2, game.numberOfPlayers);
         }
 
         [Test]
         public void ItGetsThePlayerNames() {
             List<IPlayer> players = new List<IPlayer>(new[] {new Player("Manoj"), new Player("Ryan")});
-            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { }));
-            Game game = new Game(mockPrinter, players);
+            Game game = new Game(EmptyMockConsole(), players);
             CollectionAssert.AreEqual(new List<string>(new[] {"Manoj", "Ryan"}), game.PlayerNames());
         }
 
         [Test]
-        public void ItAsksTheFirstPlayerToRollTheDice() {
-            List<IPlayer> players = new List<IPlayer>(new[] {new Player("Manoj"), new Player("Ryan")});
-            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { }));
-            Game game = new Game(mockPrinter, players);
+        public void TheFirstPlayerTakesTheirTurn() {
+            MockPlayer mockPlayer = new MockPlayer();
+            List<IPlayer> players = new List<IPlayer>(new IPlayer[] {mockPlayer, new Player("Ryan")});
+            Game game = new Game(EmptyMockConsole(), players);
             game.Start();
-            mockPrinter.AssertTextWasPrinted("Manoj, press enter to roll the dice.");
+            mockPlayer.AssertTurnTaken();
         }
 
-        [Test]
-        public void ItGetsThePlayerToRollTheDice() {
-            List<IPlayer> players = new List<IPlayer>(new[] {new Player("Manoj"), new Player("Ryan")});
-            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { }));
-            Game game = new Game(mockPrinter, players);
-            game.Start();
-            mockPrinter.AssertTextWasPrinted("Manoj, press enter to roll the dice.");
+        private static MockConsole EmptyMockConsole() {
+            return new MockConsole(new List<string>(new string[] { }));
         }
     }
 }

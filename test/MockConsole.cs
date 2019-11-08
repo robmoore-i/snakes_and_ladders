@@ -3,12 +3,12 @@ using NUnit.Framework;
 using snakes_and_ladders;
 
 namespace test {
-    internal class MockPrinter : IConsole {
+    internal class MockConsole : IConsole {
         private readonly List<string> textPrinted = new List<string>(new string[] { });
         private readonly List<string> reads;
         private int readsMade;
 
-        internal MockPrinter(List<string> reads) {
+        internal MockConsole(List<string> reads) {
             this.reads = reads;
         }
 
