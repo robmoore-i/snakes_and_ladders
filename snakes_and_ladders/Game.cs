@@ -17,7 +17,14 @@ namespace test {
             numberOfPlayers = Convert.ToInt32(consoleInput);
             this.console.Print("What are their names? (comma separated)");
             consoleInput = this.console.Read();
-            playerNames = consoleInput.Split(",").ToList<string>();
+            while (consoleInput == "") {
+                this.console.Print("What are their names? (comma separated) [for example \"Emese,Hashim\"]");
+                consoleInput = this.console.Read();
+
+            }
+            playerNames = consoleInput.Split(",").Select(name => name.Trim()).ToList();
+            string firstPlayer = playerNames[0];
+            this.console.Print(firstPlayer + ", press enter to roll the dice.");
         }
 
         public void Start() {

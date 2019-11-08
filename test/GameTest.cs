@@ -30,6 +30,28 @@ namespace test {
             Game game = new Game(mockPrinter);
             CollectionAssert.AreEqual(new List<string>(new string[]{"Manoj", "Ryan"}), game.playerNames);
         }
+
+        [Test]
+        public void IfNoPlayersAreListedItAsksYouToTryAgain() {
+            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "2", "", "Manoj,Ryan" }));
+            Game game = new Game(mockPrinter);
+            mockPrinter.assertTextWasPrinted("What are their names? (comma separated) [for example \"Emese,Hashim\"]");
+        }
+
+        [Test]
+        public void ItTrimsSpacesAroundPlayerNames() {
+            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "2", "Manoj, Ryan, Seda" }));
+            Game game = new Game(mockPrinter);
+            CollectionAssert.AreEqual(new List<string>(new string[] { "Manoj", "Ryan", "Seda" }), game.playerNames);
+        }
+
+        [Test]
+        public void ItAsksTheFirstPlayerToRollTheDice() {
+            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "2", "Manoj,Ryan" }));
+            Game game = new Game(mockPrinter);
+            game.Start();
+            mockPrinter.assertTextWasPrinted("Manoj, press enter to roll the dice.");
+        }
     }
 
     internal class MockPrinter : IConsole {
