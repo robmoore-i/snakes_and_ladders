@@ -5,7 +5,7 @@ using snakes_and_ladders;
 namespace test {
     public class PlayerTest {
         [Test]
-        public void ItGetsThePlayerToRollTheDice() {
+        public void AsksThePlayerToRollTheDice() {
             Player player = new Player("Manoj");
             MockConsole mockConsole = new MockConsole(new List<string>(new string[] { }));
             player.TakeTurn(mockConsole);
