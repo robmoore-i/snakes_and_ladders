@@ -9,8 +9,9 @@ namespace test {
             return "Mo the Mock";
         }
 
-        public void TakeTurn(IConsole console) {
+        public bool TakeTurn(IConsole console) {
             turnWasTaken = true;
+            return false;
         }
 
         public void AssertTurnTaken() {

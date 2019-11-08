@@ -21,5 +21,9 @@ namespace snakes_and_ladders {
             console.Print($"You hop along to square {landingSquare}");
             return landingSquare;
         }
+
+        public bool HasWon(int square) {
+            return false;
+        }
     }
 }

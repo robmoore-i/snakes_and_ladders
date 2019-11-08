@@ -15,10 +15,11 @@ namespace snakes_and_ladders {
             return name;
         }
 
-        public void TakeTurn(IConsole console) {
+        public bool TakeTurn(IConsole console) {
             console.Print(name + ", press enter to roll the dice.");
             console.Read();
             currentPosition = board.CalculateNewPosition(currentPosition, dice.Roll());
+            return board.HasWon(currentPosition);
         }
 
         public int CurrentPosition() {

@@ -62,11 +62,29 @@ namespace test {
         [Test]
         public void PromptsUserToPressEnterWhenTakingTurn() {
             Player player = new Player("Sam", new MockBoard(), new MockDice());
-            MockConsole mockConsole = new MockConsole(new List<string>(new[] {""}));
+            MockConsole mockConsole = MockConsole.Empty();
 
             player.TakeTurn(mockConsole);
 
             mockConsole.AssertRead();
+        }
+
+        [Test]
+        public void ChecksIfTheyHaveWonAfterTheirTurnUsingTheirFinalPosition() {
+            MockBoard mockBoard = new MockBoard(5);
+            Player player = new Player("Sam", mockBoard, new MockDice());
+
+            player.TakeTurn(MockConsole.Empty());
+
+            mockBoard.AssertWinCheckedForPosition(5);
+        }
+
+        [Test]
+        public void ReturnsResultOfWinningCheckWhenTakingTurn() {
+            MockBoard mockBoard = new MockBoard(5, true);
+            Player player = new Player("Sam", mockBoard, new MockDice());
+
+            Assert.True(player.TakeTurn(MockConsole.Empty()));
         }
     }
 }
