@@ -17,6 +17,7 @@ namespace snakes_and_ladders {
 
         public void TakeTurn(IConsole console) {
             console.Print(name + ", press enter to roll the dice.");
+            console.Read();
             currentPosition = board.CalculateNewPosition(currentPosition, dice.Roll());
         }
 

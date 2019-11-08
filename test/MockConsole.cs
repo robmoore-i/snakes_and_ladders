@@ -27,7 +27,11 @@ namespace test {
         }
 
         public static MockConsole Empty() {
-            return new MockConsole(new List<string>(new string[] { }));
+            return new MockConsole(new List<string>(new string[] { "" }));
+        }
+
+        public void AssertRead() {
+            Assert.Greater(readsMade, 0);
         }
     }
 }

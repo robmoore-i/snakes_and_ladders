@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using NUnit.Framework;
 using snakes_and_ladders;
 
@@ -46,7 +47,7 @@ namespace test {
 
             mockBoard.AssertNewPositionCalculatedWithDiceRoll(3);
         }
-        
+
         [Test]
         public void PassesCurrentPositionIntoBoard() {
             MockBoard mockBoard = new MockBoard(5);
@@ -54,8 +55,18 @@ namespace test {
 
             player.TakeTurn(MockConsole.Empty());
             player.TakeTurn(MockConsole.Empty());
-            
+
             mockBoard.AssertNewPositionCalculatedWithPreviousPosition(5);
+        }
+
+        [Test]
+        public void PromptsUserToPressEnterWhenTakingTurn() {
+            Player player = new Player("Sam", new MockBoard(), new MockDice());
+            MockConsole mockConsole = new MockConsole(new List<string>(new[] {""}));
+
+            player.TakeTurn(mockConsole);
+
+            mockConsole.AssertRead();
         }
     }
 }
