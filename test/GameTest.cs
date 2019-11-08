@@ -4,50 +4,50 @@ using NUnit.Framework;
 namespace test {
     public class GameTest {
         [Test]
-        public void ItStartsByAskingHowManyPlayers() {
-            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "2", "Manoj,Ryan" }));
-            _ = new Game(mockPrinter);
-            mockPrinter.assertTextWasPrinted("How many players?");
-        }
-
-        [Test]
-        public void ItReadsTheNumberOfPlayersFromTheConsole() {
-            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "2", "Manoj,Ryan" }));
-            Game game = new Game(mockPrinter);
-            Assert.AreEqual(2, game.numberOfPlayers);
-        }
-
-        [Test]
         public void ItAsksForThePlayersNames() {
-            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "2", "Manoj,Ryan" }));
+            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "Manoj,Ryan" }));
             _ = new Game(mockPrinter);
-            mockPrinter.assertTextWasPrinted("What are their names? (comma separated)");
+            mockPrinter.assertTextWasPrinted("Who is playing? (comma separated names)");
         }
 
         [Test]
         public void ItReadsThePlayerNamesFromTheConsole() {
-            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "2", "Manoj,Ryan" }));
+            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "Manoj,Ryan" }));
             Game game = new Game(mockPrinter);
             CollectionAssert.AreEqual(new List<string>(new string[]{"Manoj", "Ryan"}), game.playerNames);
         }
 
         [Test]
         public void IfNoPlayersAreListedItAsksYouToTryAgain() {
-            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "2", "", "Manoj,Ryan" }));
+            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "", "Manoj,Ryan" }));
             Game game = new Game(mockPrinter);
-            mockPrinter.assertTextWasPrinted("What are their names? (comma separated) [for example \"Emese,Hashim\"]");
+            mockPrinter.assertTextWasPrinted("Who is playing? (comma separated names) [for example \"Emese,Hashim\"]");
+        }
+
+        [Test]
+        public void IfOnlyOnePlayerIsListedItAsksYouToTryAgain() {
+            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "Rob", "Rob, Anna" }));
+            Game game = new Game(mockPrinter);
+            mockPrinter.assertTextWasPrinted("Who is playing? (comma separated names) [for example \"Emese,Hashim\"]");
         }
 
         [Test]
         public void ItTrimsSpacesAroundPlayerNames() {
-            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "2", "Manoj, Ryan, Seda" }));
+            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "Manoj, Ryan, Seda" }));
             Game game = new Game(mockPrinter);
             CollectionAssert.AreEqual(new List<string>(new string[] { "Manoj", "Ryan", "Seda" }), game.playerNames);
         }
 
         [Test]
+        public void ItGetsTheNumberOfPlayers() {
+            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "Manoj,Ryan" }));
+            Game game = new Game(mockPrinter);
+            Assert.AreEqual(2, game.numberOfPlayers);
+        }
+
+        [Test]
         public void ItAsksTheFirstPlayerToRollTheDice() {
-            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "2", "Manoj,Ryan" }));
+            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "Manoj,Ryan" }));
             Game game = new Game(mockPrinter);
             game.Start();
             mockPrinter.assertTextWasPrinted("Manoj, press enter to roll the dice.");
