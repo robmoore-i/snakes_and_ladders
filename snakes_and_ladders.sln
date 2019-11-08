@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "snakes_and_ladders", "snakes_and_ladders\snakes_and_ladders.csproj", "{7C46AECA-9FE5-4ACD-9BD6-016480A881C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{15089F22-E9D2-4469-8C1B-EE1C4C34416A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C46AECA-9FE5-4ACD-9BD6-016480A881C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C46AECA-9FE5-4ACD-9BD6-016480A881C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C46AECA-9FE5-4ACD-9BD6-016480A881C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C46AECA-9FE5-4ACD-9BD6-016480A881C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15089F22-E9D2-4469-8C1B-EE1C4C34416A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15089F22-E9D2-4469-8C1B-EE1C4C34416A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15089F22-E9D2-4469-8C1B-EE1C4C34416A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15089F22-E9D2-4469-8C1B-EE1C4C34416A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
