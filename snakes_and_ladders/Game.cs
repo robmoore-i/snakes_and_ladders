@@ -20,9 +20,9 @@ namespace snakes_and_ladders {
             numberOfPlayers = playerNames.Count;
         }
 
-        public Game(IConsole console, List<string> playerNames) {
+        public Game(IConsole console, List<Player> players) {
             this.console = console;
-            this.playerNames = playerNames;
+            playerNames = players.Select(player => player.name).ToList();
             numberOfPlayers = playerNames.Count;
         }
 

@@ -48,18 +48,18 @@ namespace test {
 
         [Test]
         public void CanInitialiseTheGameWithPlayerNamesDirectly() {
-            List<string> playerNames = new List<string>(new[] {"Manoj", "Ryan"});
+            List<Player> players = new List<Player>(new[] {new Player("Manoj"), new Player("Ryan")});
             MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { }));
-            Game game = new Game(mockPrinter, playerNames);
-            CollectionAssert.AreEqual(playerNames, game.playerNames);
+            Game game = new Game(mockPrinter, players);
+            CollectionAssert.AreEqual(new List<string>(new[] {"Manoj", "Ryan"}), game.playerNames);
             Assert.AreEqual(2, game.numberOfPlayers);
         }
 
         [Test]
         public void ItAsksTheFirstPlayerToRollTheDice() {
-            List<string> playerNames = new List<string>(new[] {"Manoj", "Ryan"});
+            List<Player> players = new List<Player>(new[] {new Player("Manoj"), new Player("Ryan")});
             MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { }));
-            Game game = new Game(mockPrinter, playerNames);
+            Game game = new Game(mockPrinter, players);
             game.Start();
             mockPrinter.AssertTextWasPrinted("Manoj, press enter to roll the dice.");
         }
