@@ -21,7 +21,7 @@ namespace snakes_and_ladders {
         public void Start() {
             int currentPlayer = 0;
             while (!players[currentPlayer].TakeTurn(console)) {
-                currentPlayer += 1;
+                currentPlayer = (currentPlayer + 1) % numberOfPlayers;
             }
             console.Print($"We have a winner! Congratulations, {players[currentPlayer].Name()}!");
         }

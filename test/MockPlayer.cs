@@ -3,15 +3,15 @@ using snakes_and_ladders;
 
 namespace test {
     public class MockPlayer : IPlayer {
-        private readonly bool won;
         private readonly string name;
-        private bool turnWasTaken;
+        private int turnsUntilWin;
+        private int turnTakenCallCount;
         
-        public MockPlayer() : this(false) {
+        public MockPlayer() : this(100) {
         }
 
-        public MockPlayer(bool won, string name = "Mo the Mock") {
-            this.won = won;
+        public MockPlayer(int turnsUntilWin, string name = "Mo the Mock") {
+            this.turnsUntilWin = turnsUntilWin;
             this.name = name;
         }
 
@@ -20,12 +20,17 @@ namespace test {
         }
 
         public bool TakeTurn(IConsole console) {
-            turnWasTaken = true;
-            return won;
+            turnTakenCallCount += 1;
+            turnsUntilWin -= 1;
+            return turnsUntilWin == 0;
         }
 
         public void AssertTurnTaken() {
-            Assert.True(turnWasTaken);
+            Assert.Greater(turnTakenCallCount, 0);
+        }
+
+        public void AssertTurnTakenTwice() {
+            Assert.AreEqual(2, turnTakenCallCount);
         }
     }
 }

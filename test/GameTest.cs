@@ -25,7 +25,7 @@ namespace test {
         [Test]
         public void TheFirstPlayerTakesTheirTurn() {
             MockPlayer mockPlayer = new MockPlayer();
-            List<IPlayer> players = new List<IPlayer>(new[] {mockPlayer, new MockPlayer(true)});
+            List<IPlayer> players = new List<IPlayer>(new[] {mockPlayer, new MockPlayer(1)});
             Game game = new Game(MockConsole.Empty(), players);
 
             game.Start();
@@ -35,7 +35,7 @@ namespace test {
 
         [Test]
         public void IfPlayerHasWonThenTheWinnerIsPrinted() {
-            List<IPlayer> players = new List<IPlayer>(new[] {new MockPlayer(true), NamedPlayer("Ryan")});
+            List<IPlayer> players = new List<IPlayer>(new[] {new MockPlayer(1), NamedPlayer("Ryan")});
             MockConsole mockConsole = MockConsole.Empty();
             Game game = new Game(mockConsole, players);
 
@@ -46,7 +46,7 @@ namespace test {
 
         [Test]
         public void IfPlayerDoesntWinThenTheNextPlayerGoes() {
-            MockPlayer mockPlayer = new MockPlayer(true);
+            MockPlayer mockPlayer = new MockPlayer(1);
             List<IPlayer> players = new List<IPlayer>(new IPlayer[] {new MockPlayer(), mockPlayer});
             Game game = new Game(MockConsole.Empty(), players);
 
@@ -55,8 +55,19 @@ namespace test {
             mockPlayer.AssertTurnTaken();
         }
 
+        [Test]
+        public void IfLastPlayerDoesntWinItGoesBackToTheFirstPlayer() {
+            MockPlayer mockPlayer = new MockPlayer(2);
+            List<IPlayer> players = new List<IPlayer>(new IPlayer[] {mockPlayer, new MockPlayer() });
+            Game game = new Game(MockConsole.Empty(), players);
+
+            game.Start();
+
+            mockPlayer.AssertTurnTakenTwice();
+        }
+
         private static IPlayer NamedPlayer(string name) {
-            return new MockPlayer(false, name);
+            return new MockPlayer(1, name);
         }
     }
 }
