@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace test {
+namespace snakes_and_ladders {
     public class Game {
         public readonly int numberOfPlayers;
         public readonly List<string> playerNames;
@@ -17,13 +17,13 @@ namespace test {
                 consoleInput = this.console.Read();
             }
             playerNames = consoleInput.Split(",").Select(name => name.Trim()).ToList();
-            numberOfPlayers = playerNames.Count();
+            numberOfPlayers = playerNames.Count;
         }
 
         public Game(IConsole console, List<string> playerNames) {
             this.console = console;
             this.playerNames = playerNames;
-            numberOfPlayers = playerNames.Count();
+            numberOfPlayers = playerNames.Count;
         }
 
         public void Start() {
