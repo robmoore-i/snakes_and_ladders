@@ -8,7 +8,9 @@ namespace test {
         public void AsksThePlayerToRollTheDice() {
             Player player = new Player("Manoj");
             MockConsole mockConsole = MockConsole.Empty();
+            
             player.TakeTurn(mockConsole, new MockBoard());
+            
             mockConsole.AssertTextWasPrinted("Manoj, press enter to roll the dice.");
         }
 
@@ -17,21 +19,24 @@ namespace test {
             MockBoard mockBoard = new MockBoard();
             Player player = new Player("Paul");
             MockConsole mockConsole = MockConsole.Empty();
+            
             player.TakeTurn(mockConsole, mockBoard);
+            
             mockBoard.AssertPositionUpdateCalculated(1);
         }
-    }
 
-    public class MockBoard : IBoard {
-        private int calculateNewPositionCalledWithPosition;
-
-        public void AssertPositionUpdateCalculated(int expectedPositionArgument) {
-            Assert.AreEqual(expectedPositionArgument, calculateNewPositionCalledWithPosition);
+        [Test]
+        public void StartsOnSquare1() {
+            Assert.AreEqual(1, new Player("Mike").CurrentPosition());
         }
 
-        public int CalculateNewPosition(int currentPosition, int diceRoll) {
-            calculateNewPositionCalledWithPosition = currentPosition;
-            return 1;
+        [Test]
+        public void SetsPositionUsingTheBoard() {
+            Player player = new Player("Mike");
+            
+            player.TakeTurn(MockConsole.Empty(), new MockBoard(5));
+            
+            Assert.AreEqual(5, player.CurrentPosition());
         }
     }
 }
