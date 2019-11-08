@@ -11,8 +11,8 @@ namespace snakes_and_ladders {
 
         public int CalculateNewPosition(int currentPosition, int diceRoll) {
             int landingSquare = currentPosition + diceRoll;
-            List<ITunnel> applicableLadders = tunnels.Where(tunnel => tunnel.From(landingSquare)).ToList();
-            return applicableLadders.Count > 0 ? applicableLadders[0].Destination() : landingSquare;
+            List<ITunnel> applicableTunnels = tunnels.Where(tunnel => tunnel.From(landingSquare)).ToList();
+            return applicableTunnels.Count > 0 ? applicableTunnels[0].Destination() : landingSquare;
         }
     }
 }
