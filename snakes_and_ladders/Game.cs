@@ -19,9 +19,11 @@ namespace snakes_and_ladders {
         }
 
         public void Start() {
-            if (players[0].TakeTurn(console)) {
-                console.Print($"We have a winner! Congratulations, {players[0].Name()}!");
+            int currentPlayer = 0;
+            while (!players[currentPlayer].TakeTurn(console)) {
+                currentPlayer += 1;
             }
+            console.Print($"We have a winner! Congratulations, {players[currentPlayer].Name()}!");
         }
     }
 }

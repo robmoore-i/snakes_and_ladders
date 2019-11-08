@@ -25,7 +25,7 @@ namespace test {
         [Test]
         public void TheFirstPlayerTakesTheirTurn() {
             MockPlayer mockPlayer = new MockPlayer();
-            List<IPlayer> players = new List<IPlayer>(new IPlayer[] {mockPlayer, NamedPlayer("Ryan")});
+            List<IPlayer> players = new List<IPlayer>(new[] {mockPlayer, new MockPlayer(true)});
             Game game = new Game(MockConsole.Empty(), players);
 
             game.Start();
@@ -35,7 +35,7 @@ namespace test {
 
         [Test]
         public void IfPlayerHasWonThenTheWinnerIsPrinted() {
-            List<IPlayer> players = new List<IPlayer>(new IPlayer[] {new MockPlayer(true), NamedPlayer("Ryan")});
+            List<IPlayer> players = new List<IPlayer>(new[] {new MockPlayer(true), NamedPlayer("Ryan")});
             MockConsole mockConsole = MockConsole.Empty();
             Game game = new Game(mockConsole, players);
 
@@ -44,8 +44,19 @@ namespace test {
             mockConsole.AssertTextWasPrinted("We have a winner! Congratulations, Mo the Mock!");
         }
 
-        private static Player NamedPlayer(string name) {
-            return new Player(name, new MockBoard(), new MockDice());
+        [Test]
+        public void IfPlayerDoesntWinThenTheNextPlayerGoes() {
+            MockPlayer mockPlayer = new MockPlayer(true);
+            List<IPlayer> players = new List<IPlayer>(new IPlayer[] {new MockPlayer(), mockPlayer});
+            Game game = new Game(MockConsole.Empty(), players);
+
+            game.Start();
+
+            mockPlayer.AssertTurnTaken();
+        }
+
+        private static IPlayer NamedPlayer(string name) {
+            return new MockPlayer(false, name);
         }
     }
 }
