@@ -4,31 +4,34 @@ using System.Linq;
 namespace snakes_and_ladders {
     public class Game {
         public readonly int numberOfPlayers;
-        public readonly List<string> playerNames;
 
+        private readonly List<Player> players;
         private readonly IConsole console;
 
         public Game(IConsole console) {
-            this.console = console;
-            this.console.Print("Who is playing? (comma separated names)");
-            string consoleInput = this.console.Read();
+            console.Print("Who is playing? (comma separated names)");
+            string consoleInput = console.Read();
             while (consoleInput == "" || !consoleInput.Contains(",")) {
-                this.console.Print("Who is playing? (comma separated names) [for example \"Emese,Hashim\"]");
-                consoleInput = this.console.Read();
+                console.Print("Who is playing? (comma separated names) [for example \"Emese,Hashim\"]");
+                consoleInput = console.Read();
             }
-            playerNames = consoleInput.Split(",").Select(name => name.Trim()).ToList();
-            numberOfPlayers = playerNames.Count;
+            players = consoleInput.Split(",").Select(name => new Player(name.Trim())).ToList();
+            numberOfPlayers = players.Count;
         }
 
         public Game(IConsole console, List<Player> players) {
             this.console = console;
-            playerNames = players.Select(player => player.name).ToList();
-            numberOfPlayers = playerNames.Count;
+            this.players = players;
+            numberOfPlayers = this.players.Count;
         }
 
         public void Start() {
-            string firstPlayer = playerNames[0];
-            console.Print(firstPlayer + ", press enter to roll the dice.");
+            string firstPlayerName = players[0].name;
+            console.Print(firstPlayerName + ", press enter to roll the dice.");
+        }
+
+        public List<string> PlayerNames() {
+            return players.Select(player => player.name).ToList();
         }
     }
 }

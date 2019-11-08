@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using snakes_and_ladders;
 
@@ -15,7 +16,7 @@ namespace test {
         public void ItReadsThePlayerNamesFromTheConsole() {
             MockPrinter mockPrinter = new MockPrinter(new List<string>(new[] {"Manoj,Ryan"}));
             Game game = new Game(mockPrinter);
-            CollectionAssert.AreEqual(new List<string>(new[] {"Manoj", "Ryan"}), game.playerNames);
+            CollectionAssert.AreEqual(new List<string>(new[] {"Manoj", "Ryan"}), game.PlayerNames());
         }
 
         [Test]
@@ -36,7 +37,7 @@ namespace test {
         public void ItTrimsSpacesAroundPlayerNames() {
             MockPrinter mockPrinter = new MockPrinter(new List<string>(new[] {"Manoj, Ryan, Seda"}));
             Game game = new Game(mockPrinter);
-            CollectionAssert.AreEqual(new List<string>(new[] {"Manoj", "Ryan", "Seda"}), game.playerNames);
+            CollectionAssert.AreEqual(new List<string>(new[] {"Manoj", "Ryan", "Seda"}), game.PlayerNames());
         }
 
         [Test]
@@ -51,7 +52,7 @@ namespace test {
             List<Player> players = new List<Player>(new[] {new Player("Manoj"), new Player("Ryan")});
             MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { }));
             Game game = new Game(mockPrinter, players);
-            CollectionAssert.AreEqual(new List<string>(new[] {"Manoj", "Ryan"}), game.playerNames);
+            CollectionAssert.AreEqual(new List<string>(new[] {"Manoj", "Ryan"}), game.PlayerNames());
             Assert.AreEqual(2, game.numberOfPlayers);
         }
 
