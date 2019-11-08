@@ -13,7 +13,8 @@ namespace snakes_and_ladders {
             return source == square;
         }
 
-        public int Destination() {
+        public int Destination(IConsole console) {
+            console.Print($"You slide down a snake and plummet to square {destination}");
             return destination;
         }
     }

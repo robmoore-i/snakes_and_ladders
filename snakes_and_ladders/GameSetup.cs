@@ -16,7 +16,7 @@ namespace snakes_and_ladders {
                 console.Print("Who is playing? (comma separated names) [for example \"Emese,Hashim\"]");
                 consoleInput = console.Read();
             }
-            Board board = new Board();
+            Board board = new Board(console);
             Dice dice = new Dice();
             List<IPlayer> players = consoleInput
                 .Split(",")

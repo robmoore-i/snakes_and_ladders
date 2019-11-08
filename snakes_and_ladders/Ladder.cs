@@ -12,7 +12,8 @@ namespace snakes_and_ladders {
             return source == square;
         }
 
-        public int Destination() {
+        public int Destination(IConsole console) {
+            console.Print($"You climb up a ladder and ascend to square {destination}");
             return destination;
         }
     }
