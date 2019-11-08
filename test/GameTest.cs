@@ -53,6 +53,15 @@ namespace test {
             CollectionAssert.AreEqual(playerNames, game.playerNames);
             Assert.AreEqual(2, game.numberOfPlayers);
         }
+
+        [Test]
+        public void ItAsksTheFirstPlayerToRollTheDice() {
+            List<string> playerNames = new List<string>(new string[] { "Manoj", "Ryan" });
+            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] {}));
+            Game game = new Game(mockPrinter, playerNames);
+            game.Start();
+            mockPrinter.assertTextWasPrinted("Manoj, press enter to roll the dice.");
+        }
     }
 
     internal class MockPrinter : IConsole {
