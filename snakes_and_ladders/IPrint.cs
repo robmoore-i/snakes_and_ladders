@@ -1,5 +1,6 @@
 ﻿namespace test {
-    public interface IPrint {
+    public interface IConsole {
         public void Print(string text);
+        public string Read();
     }
 }
