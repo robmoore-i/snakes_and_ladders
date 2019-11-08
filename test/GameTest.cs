@@ -46,11 +46,12 @@ namespace test {
         }
 
         [Test]
-        public void ItAsksTheFirstPlayerToRollTheDice() {
-            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] { "Manoj,Ryan" }));
-            Game game = new Game(mockPrinter);
-            game.Start();
-            mockPrinter.assertTextWasPrinted("Manoj, press enter to roll the dice.");
+        public void CanInitialiseTheGameWithPlayerNamesDirectly() {
+            List<string> playerNames = new List<string>(new string[] { "Manoj", "Ryan" });
+            MockPrinter mockPrinter = new MockPrinter(new List<string>(new string[] {}));
+            Game game = new Game(mockPrinter, playerNames);
+            CollectionAssert.AreEqual(playerNames, game.playerNames);
+            Assert.AreEqual(2, game.numberOfPlayers);
         }
     }
 

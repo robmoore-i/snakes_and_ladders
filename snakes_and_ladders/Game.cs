@@ -20,12 +20,17 @@ namespace test {
             }
             playerNames = consoleInput.Split(",").Select(name => name.Trim()).ToList();
             numberOfPlayers = playerNames.Count();
-            string firstPlayer = playerNames[0];
-            this.console.Print(firstPlayer + ", press enter to roll the dice.");
+        }
+
+        public Game(IConsole console, List<string> playerNames) {
+            this.console = console;
+            this.playerNames = playerNames;
+            this.numberOfPlayers = playerNames.Count();
         }
 
         public void Start() {
-
+            string firstPlayer = playerNames[0];
+            this.console.Print(firstPlayer + ", press enter to roll the dice.");
         }
     }
 }
