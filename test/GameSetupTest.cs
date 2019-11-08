@@ -8,7 +8,9 @@ namespace test {
         public void ItAsksForThePlayerNames() {
             MockConsole mockConsole = new MockConsole(new List<string>(new[] {"Manoj,Ryan"}));
             GameSetup gameSetup = new GameSetup(mockConsole);
+            
             Game _ = gameSetup.CreateGame();
+            
             mockConsole.AssertTextWasPrinted("Who is playing? (comma separated names)");
         }
 
@@ -16,7 +18,9 @@ namespace test {
         public void ItReadsThePlayerNamesFromTheConsole() {
             MockConsole mockConsole = new MockConsole(new List<string>(new[] {"Manoj,Ryan"}));
             GameSetup gameSetup = new GameSetup(mockConsole);
+            
             Game game = gameSetup.CreateGame();
+            
             CollectionAssert.AreEqual(new List<string>(new[] {"Manoj", "Ryan"}), game.PlayerNames());
         }
 
@@ -24,7 +28,9 @@ namespace test {
         public void IfNoPlayersAreListedItAsksYouToTryAgain() {
             MockConsole mockConsole = new MockConsole(new List<string>(new[] {"", "Manoj,Ryan"}));
             GameSetup gameSetup = new GameSetup(mockConsole);
+            
             Game _ = gameSetup.CreateGame();
+            
             mockConsole.AssertTextWasPrinted("Who is playing? (comma separated names) [for example \"Emese,Hashim\"]");
         }
 
@@ -32,7 +38,9 @@ namespace test {
         public void IfOnlyOnePlayerIsListedItAsksYouToTryAgain() {
             MockConsole mockConsole = new MockConsole(new List<string>(new[] {"Rob", "Rob, Anna"}));
             GameSetup gameSetup = new GameSetup(mockConsole);
+            
             Game _ = gameSetup.CreateGame();
+            
             mockConsole.AssertTextWasPrinted("Who is playing? (comma separated names) [for example \"Emese,Hashim\"]");
         }
 
@@ -40,7 +48,9 @@ namespace test {
         public void ItTrimsSpacesAroundPlayerNames() {
             MockConsole mockConsole = new MockConsole(new List<string>(new[] {"Manoj, Ryan, Seda"}));
             GameSetup gameSetup = new GameSetup(mockConsole);
+            
             Game game = gameSetup.CreateGame();
+            
             CollectionAssert.AreEqual(new List<string>(new[] {"Manoj", "Ryan", "Seda"}), game.PlayerNames());
         }
     }
