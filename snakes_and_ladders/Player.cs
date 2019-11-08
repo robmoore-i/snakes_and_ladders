@@ -10,8 +10,9 @@ namespace snakes_and_ladders {
             return name;
         }
 
-        public void TakeTurn(IConsole console) {
+        public void TakeTurn(IConsole console, IBoard board) {
             console.Print(name + ", press enter to roll the dice.");
+            board.CalculateNewPosition(1, 1);
         }
     }
 }

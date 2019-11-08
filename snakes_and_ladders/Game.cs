@@ -19,7 +19,8 @@ namespace snakes_and_ladders {
         }
 
         public void Start() {
-            players[0].TakeTurn(console);
+            SnakesAndLaddersBoard board = new SnakesAndLaddersBoard();
+            players[0].TakeTurn(console, board);
         }
     }
 }

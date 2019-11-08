@@ -25,5 +25,9 @@ namespace test {
             readsMade += 1;
             return read;
         }
+
+        public static MockConsole Empty() {
+            return new MockConsole(new List<string>(new string[] { }));
+        }
     }
 }
