@@ -8,17 +8,6 @@ namespace snakes_and_ladders {
         private readonly List<Player> players;
         private readonly IConsole console;
 
-        public Game(IConsole console) {
-            console.Print("Who is playing? (comma separated names)");
-            string consoleInput = console.Read();
-            while (consoleInput == "" || !consoleInput.Contains(",")) {
-                console.Print("Who is playing? (comma separated names) [for example \"Emese,Hashim\"]");
-                consoleInput = console.Read();
-            }
-            players = consoleInput.Split(",").Select(name => new Player(name.Trim())).ToList();
-            numberOfPlayers = players.Count;
-        }
-
         public Game(IConsole console, List<Player> players) {
             this.console = console;
             this.players = players;
