@@ -5,7 +5,7 @@ namespace test {
     public class PlayerTest {
         [Test]
         public void AsksThePlayerToRollTheDice() {
-            Player player = new Player("Manoj", new MockBoard());
+            Player player = new Player("Manoj", new MockBoard(), new MockDice());
             MockConsole mockConsole = MockConsole.Empty();
 
             player.TakeTurn(mockConsole);
@@ -16,7 +16,7 @@ namespace test {
         [Test]
         public void ItUsesTheBoardToCalculateItsNewPosition() {
             MockBoard mockBoard = new MockBoard();
-            Player player = new Player("Manoj", mockBoard);
+            Player player = new Player("Manoj", mockBoard, new MockDice());
 
             player.TakeTurn(MockConsole.Empty());
 
@@ -25,12 +25,12 @@ namespace test {
 
         [Test]
         public void StartsOnSquare1() {
-            Assert.AreEqual(1, new Player("Manoj", new MockBoard()).CurrentPosition());
+            Assert.AreEqual(1, new Player("Manoj", new MockBoard(), new MockDice()).CurrentPosition());
         }
 
         [Test]
         public void SetsPositionUsingTheBoard() {
-            Player player = new Player("Manoj", new MockBoard(5));
+            Player player = new Player("Manoj", new MockBoard(5), new MockDice());
 
             player.TakeTurn(MockConsole.Empty());
 

@@ -17,9 +17,10 @@ namespace snakes_and_ladders {
                 consoleInput = console.Read();
             }
             SnakesAndLaddersBoard board = new SnakesAndLaddersBoard();
+            Dice dice = new Dice();
             List<IPlayer> players = consoleInput
                 .Split(",")
-                .Select(name => new Player(name.Trim(), board))
+                .Select(name => new Player(name.Trim(), board, dice))
                 .ToList<IPlayer>();
             return new Game(console, players);
         }

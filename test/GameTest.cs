@@ -7,18 +7,18 @@ namespace test {
         [Test]
         public void ItGetsTheNumberOfPlayers() {
             List<IPlayer> players = new List<IPlayer>(new[] {NamedPlayer("Manoj"), NamedPlayer("Ryan")});
-            
+
             Game game = new Game(MockConsole.Empty(), players);
-            
+
             Assert.AreEqual(2, game.numberOfPlayers);
         }
 
         [Test]
         public void ItGetsThePlayerNames() {
             List<IPlayer> players = new List<IPlayer>(new[] {NamedPlayer("Manoj"), NamedPlayer("Ryan")});
-            
+
             Game game = new Game(MockConsole.Empty(), players);
-            
+
             CollectionAssert.AreEqual(new List<string>(new[] {"Manoj", "Ryan"}), game.PlayerNames());
         }
 
@@ -27,14 +27,14 @@ namespace test {
             MockPlayer mockPlayer = new MockPlayer();
             List<IPlayer> players = new List<IPlayer>(new IPlayer[] {mockPlayer, NamedPlayer("Ryan")});
             Game game = new Game(MockConsole.Empty(), players);
-            
+
             game.Start();
-            
+
             mockPlayer.AssertTurnTaken();
         }
 
         private static Player NamedPlayer(string name) {
-            return new Player(name, new MockBoard());
+            return new Player(name, new MockBoard(), new MockDice());
         }
     }
 }
