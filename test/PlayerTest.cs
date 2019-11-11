@@ -11,7 +11,7 @@ namespace test {
 
             player.TakeTurn(mockConsole);
 
-            mockConsole.AssertTextWasPrinted("Manoj, press enter to roll the dice.");
+            mockConsole.AssertTextWasPrinted("\n\n=> Manoj, press enter to roll the dice.");
         }
 
         [Test]
@@ -85,6 +85,17 @@ namespace test {
             Player player = new Player("Sam", mockBoard, new MockDice());
 
             Assert.True(player.TakeTurn(MockConsole.Empty()));
+        }
+
+        [Test]
+        public void ItPrintsOutTheDiceRoll() {
+            MockConsole mockConsole = MockConsole.Empty();
+            MockDice mockDice = new MockDice(2);
+            Player player = new Player("Sam", new MockBoard(), mockDice);
+            
+            player.TakeTurn(mockConsole);
+            
+            mockConsole.AssertTextWasPrinted("You rolled a 2!");
         }
     }
 }
