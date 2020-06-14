@@ -8,7 +8,6 @@ namespace snakes_and_ladders {
             this.destination = destination;
         }
 
-
         public bool From(int square) {
             return source == square;
         }
